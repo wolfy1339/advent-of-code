@@ -31,7 +31,7 @@ for (let entry of database) {
 
   if (password.includes(letter)) {
     const condition1 = password[pos1 - 1] === letter && password[pos2 - 1] !== letter;
-    const condition2 = password[pos2 - 1] !== letter && password[pos1 - 1] === letter;
+    const condition2 = password[pos1 - 1] !== letter && password[pos2 - 1] === letter;
     if (condition1 || condition2) valid += 1;
   }
 }
