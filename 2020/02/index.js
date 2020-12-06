@@ -30,7 +30,9 @@ for (let entry of database) {
   const [[pos1, pos2], letter, password] = entry;
 
   if (password.includes(letter)) {
-    if (password[pos1 - 1] === letter && password[pos2 - 1] === letter) valid += 1;
+    const condition1 = password[pos1 - 1] === letter && password[pos2 - 1] !== letter;
+    const condition2 = password[pos2 - 1] !== letter && password[pos1 - 1] === letter;
+    if (condition1 || condition2) valid += 1;
   }
 }
 
