@@ -1,7 +1,8 @@
 // @ts-check
 import { splitInputLines } from '../../common.js';
+import { resolve } from 'path';
 
-const data = splitInputLines('./data').filter(Boolean).map(Number);
+const data = splitInputLines(resolve('./data')).filter(Boolean).map(Number);
 
 // Part 1
 for (let v of data) {
