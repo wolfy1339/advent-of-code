@@ -2,9 +2,11 @@ import { readFileSync } from 'fs';
 
 const data = readFileSync('./data').toString().split('\n').filter(Boolean).map(Number);
 
+// Part 1
 for (let v of data) {
     const num1 = v;
     let done;
+
     for (let e of data) {
         let num2 = e;
 
@@ -13,6 +15,28 @@ for (let v of data) {
             done = true;
             break;
         }
+    }
+    if (done) break;
+}
+
+// Part 2
+for (let v of data) {
+    const num1 = v;
+    let done;
+
+    for (let e of data) {
+        let num2 = e;
+
+        for (let n of data) {
+            const num3 = n;
+
+            if (num1 + num2 + num3 === 2020) {
+                console.log(num1 * num2 * num3);
+                done = true;
+                break;
+            }
+        }
+        if (done) break;
     }
     if (done) break;
 }
