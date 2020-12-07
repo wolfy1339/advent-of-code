@@ -2,7 +2,7 @@
 import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
-const boardingPasses = splitInputLines(resolve('./data')).map(b => b.split(''));
+const boardingPasses = splitInputLines(resolve('./data')).filter(Boolean).map(b => b.split(''));
 
 /**
  * @param {any[]} boardingPass
@@ -42,7 +42,12 @@ function getSeatColumn(boardingPass) {
   return max;
 }
 
-const seatIDs = boardingPasses.map(v => (getSeatRow(v) * 8) + getSeatColumn(v));
-console.log(seatIDs);
+const seatIDs = boardingPasses.map(v => {
+  const row = getSeatRow(v);
+  const col = getSeatColumn(v);
+  return row * 8 + col;
+});
+
+// Part 1
 console.log(`Highest seat ID: ${Math.max(...seatIDs)}`);
 
