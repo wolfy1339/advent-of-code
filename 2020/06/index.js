@@ -3,13 +3,15 @@ import { resolve } from 'path';
 
 // First level Arrays are groups (data imput)
 // Second level are individuals witin a group (e.split('\n') output)
-const forms = splitInputEmptyLines(resolve('./data')).map(e => e.split('\n'));
+const forms = splitInputEmptyLines(resolve('./data')).map(group => group.split('\n').map(person => person.split('')));
 
 // Part 1
-let numberQuestions = forms.map(e => {
+let numberQuestions = forms.map(group => {
   const set = new Set();
 
-  e.flatMap(e => e.split('')).forEach(f => set.add(f));
+  group.forEach(person => {
+    person.forEach(answer => set.add(answer));
+  });
 
   return set.size;
 }).reduce((prev, curr) => prev + curr);
@@ -17,18 +19,15 @@ let numberQuestions = forms.map(e => {
 console.log(numberQuestions);
 
 // Part 2
-numberQuestions = forms.map(e => {
-  const num = e.length;
-  const set = new Set();
-
-  const q = e.flatMap(e => e.split('')).reduce((p, c) => p.concat(c));
-
-  for (let i of q) {
-    if (Array.from(q.matchAll(new RegExp(i, 'g'))).length === num) {
-      set.add(i);
-    }
-  }
-  return set.size;
+numberQuestions = forms.map(group => {
+  return group.reduce((acc, person) => {
+    const set = new Set(acc);
+    const result = [];
+    person.forEach(answer => {
+      if (set.has(answer)) result.push(answer);
+    });
+    return result;
+  }).length;
 }).reduce((prev, curr) => prev + curr);
 
 console.log(numberQuestions);
