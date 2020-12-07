@@ -3,15 +3,25 @@ import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
 const map = splitInputLines(resolve('./data')).filter(Boolean).map(e=>e.split(''));
+const maxPosX = map[0].length; // map width
 
-// Part 1
-let posX = 0;
-let treeCount = 0;
-const maxPosX = map[0].length;
+/**
+ * @param {number} slopeX
+ * @param {number} slopeY
+ * @return {number}
+ */
+function calculateTreesEncountered(slopeX, slopeY) {
+  let posX = 0;
+  let treeCount = 0;
 
-for (let posY = 0; posY < map.length; posY++) {
-  if (map[posY][posX] === '#') treeCount += 1;
-  posX = (posX + 3) % maxPosX;
+  for (let posY = 0; posY < map.length; posY += slopeY) {
+    if (map[posY][posX] === '#') treeCount += 1;
+    posX = (posX + slopeX) % maxPosX;
+  }
+
+  return treeCount;
 }
 
-console.log(`You will encounter ${treeCount} trees`);
+
+// Part 1
+console.log(`Part 1: You will encounter ${calculateTreesEncountered(3, 1)} trees`);
