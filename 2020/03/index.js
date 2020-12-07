@@ -25,3 +25,17 @@ function calculateTreesEncountered(slopeX, slopeY) {
 
 // Part 1
 console.log(`Part 1: You will encounter ${calculateTreesEncountered(3, 1)} trees`);
+
+// Part 2
+const slopes = [[1, 1], [3, 1], [5, 1], [7, 1], [1, 2]];
+let multipliedTotals = 1;
+
+for (let slope of slopes) {
+  const [slopeX, slopeY] = slope;
+  const treeCount = calculateTreesEncountered(slopeX, slopeY);
+  multipliedTotals *= treeCount;
+
+  console.log(`Part 2: You will encounter ${treeCount} trees with a slope of ${slope}`);
+}
+
+console.log(`Part 2: When you multiply the values together, you get ${multipliedTotals}`);
