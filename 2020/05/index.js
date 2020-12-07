@@ -51,3 +51,14 @@ const seatIDs = boardingPasses.map(v => {
 // Part 1
 console.log(`Highest seat ID: ${Math.max(...seatIDs)}`);
 
+// Part 2
+const sortedSeatIDs = seatIDs.sort();
+for (let i = 0; i < sortedSeatIDs.length; i++) {
+  let seatID = sortedSeatIDs[i];
+  let nextID = seatID + 1;
+  let nextListID = sortedSeatIDs[i + 1];
+
+  if (nextID !== nextListID) {
+    console.log('Your seat ID is', nextID);
+  }
+}
