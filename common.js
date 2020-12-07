@@ -9,3 +9,12 @@ import { readFileSync } from 'fs';
 export function splitInputLines(path) {
   return readFileSync(path).toString().split('\n');
 }
+
+/**
+ * Returns the contents of a file split by empty lines
+ * @param {string} path Path of the file to read
+ * @return {string[]}
+ */
+export function splitInputEmptyLines(path) {
+  return readFileSync(path).toString().split(/\n{2,}/);
+}
