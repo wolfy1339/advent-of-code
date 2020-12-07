@@ -29,17 +29,17 @@ function hasAllRequiredFields(passport) {
  * @return {boolean}
  */
 function validatePassportData(passport) {
-  const birthYear = passport.byr || 0;
+  const birthYear = passport.byr;
   if (!birthYear) return false;
   const birthYearValid = birthYear >= 1920 && birthYear <= 2002;
   if (!birthYearValid) return false;
 
-  const issueYear = passport.iyr || 0;
+  const issueYear = passport.iyr;
   if (!issueYear) return false;
   const issueYearValid = issueYear >= 2010 && issueYear <= 2020;
   if (!issueYearValid) return false;
 
-  const expirationYear = passport.eyr || 0;
+  const expirationYear = passport.eyr;
   if (!expirationYear) return false;
   const expirationYearValid = expirationYear >= 2020 && expirationYear <= 2030;
   if (!expirationYearValid) return false;
@@ -50,7 +50,7 @@ function validatePassportData(passport) {
     return false;
   } else {
     const unit = height.slice(-2);
-    const value = height.slice(0, -2);
+    const value = +height.slice(0, -2);
     if (unit === 'cm') {
       heightValid = value >= 150 && value <= 193;
     } else if (unit === 'in') {
@@ -71,7 +71,7 @@ function validatePassportData(passport) {
 
   const passportID = passport.pid;
   if (!passportID) return false;
-  const passportIDValid = passportID.length === 9 && !/[A-Za-z]/g.test(passportID);
+  const passportIDValid = passportID.length === 9 && !/[a-zA-Z]+/g.test(passportID);
   if (!passportIDValid) return false;
 
   return birthYearValid && issueYearValid && expirationYearValid && heightValid &&
