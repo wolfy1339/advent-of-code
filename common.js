@@ -7,7 +7,7 @@ import { readFileSync } from 'fs';
  * @return {string[]}
  */
 export function splitInputLines(path) {
-  return readFileSync(path).toString().split('\n');
+  return readFileSync(path).toString().split('\n').filter(Boolean);
 }
 
 /**
@@ -16,5 +16,5 @@ export function splitInputLines(path) {
  * @return {string[]}
  */
 export function splitInputEmptyLines(path) {
-  return readFileSync(path).toString().split(/\n{2,}/);
+  return readFileSync(path).toString().split(/\n{2,}/).filter(Boolean);
 }

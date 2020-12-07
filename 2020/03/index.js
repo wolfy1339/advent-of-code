@@ -2,7 +2,7 @@
 import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
-const map = splitInputLines(resolve('./data')).filter(Boolean).map(e=>e.split(''));
+const map = splitInputLines(resolve('./data')).map(e=>e.split(''));
 const maxPosX = map[0].length; // map width
 
 /**

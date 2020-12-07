@@ -2,7 +2,7 @@
 import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
-const boardingPasses = splitInputLines(resolve('./data')).filter(Boolean).map(b => b.split(''));
+const boardingPasses = splitInputLines(resolve('./data')).map(b => b.split(''));
 
 /**
  * @param {any[]} boardingPass

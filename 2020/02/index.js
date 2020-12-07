@@ -3,7 +3,7 @@ import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
 /** @type {[number[], string, string][]} */
-const database = splitInputLines(resolve('./data')).filter(Boolean).map(e => e.split(' ')).map(e => {
+const database = splitInputLines(resolve('./data')).map(e => e.split(' ')).map(e => {
   return [e[0].split('-').map(Number), e[1].slice(0, -1), e[2]];
 });
 

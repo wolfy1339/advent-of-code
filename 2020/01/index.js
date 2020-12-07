@@ -2,7 +2,7 @@
 import { splitInputLines } from '../../common.js';
 import { resolve } from 'path';
 
-const data = splitInputLines(resolve('./data')).filter(Boolean).map(Number);
+const data = splitInputLines(resolve('./data')).map(Number);
 
 // Part 1
 for (let v of data) {
