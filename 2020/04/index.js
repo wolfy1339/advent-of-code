@@ -59,9 +59,14 @@ function validatePassportData(passport) {
   }
   if (!heightValid) return false;
 
+  const hairColor = passport.hcl;
+  if (!hairColor) return false;
+  const hairColorValid = hairColor.length === 7 && hairColor[0] === '#' && /[0-9a-f]+/g.test(hairColor.slice(1));
+  if (!hairColorValid) return false;
+
   const eyeColor = passport.ecl;
   if (!eyeColor) return false;
-  const eyeColorValid = eyeColor.length === 7 && eyeColor[0] === '#' && /[0-9a-f]/g.test(eyeColor.slice(1));
+  const eyeColorValid = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'].includes(eyeColor);
   if (!eyeColorValid) return false;
 
   const passportID = passport.pid;
@@ -69,7 +74,8 @@ function validatePassportData(passport) {
   const passportIDValid = passportID.length === 9 && !/[A-Za-z]/g.test(passportID);
   if (!passportIDValid) return false;
 
-  return birthYearValid && issueYearValid && expirationYearValid && heightValid && eyeColorValid && passportIDValid;
+  return birthYearValid && issueYearValid && expirationYearValid && heightValid &&
+    hairColorValid && eyeColorValid && passportIDValid;
 }
 
 // Part 1
