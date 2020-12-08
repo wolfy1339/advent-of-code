@@ -3,7 +3,7 @@ import { resolve } from 'path';
 
 // First level Arrays are groups (data imput)
 // Second level are individuals witin a group (e.split('\n') output)
-const forms = splitInputEmptyLines(resolve('./data')).map(group => group.split('\n').map(person => person.split('')));
+const forms = splitInputEmptyLines(resolve('./data')).map(group => group.split('\n').filter(Boolean).map(person => person.split('')));
 
 // Part 1
 let numberQuestions = forms.map(group => {
